@@ -1,1 +1,1 @@
-# WiFi Configurator
+# wpa_supplicant Configurator

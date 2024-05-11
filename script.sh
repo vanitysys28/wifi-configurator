@@ -19,7 +19,10 @@ if grep -w $SSID'"' /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null; then
 	exit
     fi
 
-    # Delete block associated with SSID
+    cat /etc/wpa_supplicant/wpa_supplicant.conf | tr '\n' '|' > tmp;
+    sed -i 's/config=1||/config=1\n\n/g;s/}|/}\n/g' tmp;
+    sed "/$SSID/d" tmp | tr '|' '\n' | tee /etc/wpa_supplicant/wpa_supplicant.conf
+
 fi
 
 echo "Please enter the network password:"

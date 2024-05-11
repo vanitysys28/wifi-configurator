@@ -20,8 +20,8 @@ if grep -w $SSID'"' /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null; then
     fi
 
     cat /etc/wpa_supplicant/wpa_supplicant.conf | tr '\n' '|' > tmp;
-    sed -i 's/config=1||/config=1\n\n/g;s/}|/}\n/g' tmp;
-    sed "/$SSID/d" tmp | tr '|' '\n' | tee /etc/wpa_supplicant/wpa_supplicant.conf
+    sed -i 's/||network/\n\nnetwork/g;s/}|/}\n/g' tmp;
+    sed "/$SSID/d" tmp | tr '|' '\n' | tee /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
 
 fi
 
